@@ -1,0 +1,19 @@
+# Regenerable MATLAB / Simulink artifacts
+slprj/
+Cache/codegen/
+*.slxc
+*.asv
+*.autosave
+*.slx.autosave
+*.mdl.autosave
+*.slx.bak
+*.mdl.bak
+
+# Local editor and OS files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Keep Cache/zoom_trajectory.mat and Cache/zoom_checkpoint.mat:
+# these precomputed optical states allow the demo to start immediately.

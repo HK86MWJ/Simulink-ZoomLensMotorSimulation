@@ -1,0 +1,27 @@
+Folder reorganization verification
+
+MATLAB entry points: Script/
+Helpers and GUI class: Script/Functions/
+Official helper: Script/Functions/Official/
+Official example: Script/Examples/Official/
+Automated tests: Script/Tests/
+Simulink model: Model/ZoomActuatorControl.slx
+Original model backup: Model/Backup/ZoomActuatorControl_before_layout.slx
+Figures, videos and numerical outputs: Results/
+Optimization and Simulink caches: Cache/
+Specification and source references: Docs/
+
+Verified MATLAB resolves main_zoom_demo, loadZoomSystem, createPhotoZoom and
+ZoomActuatorControl.slx from their new locations.
+Loaded all 29 precomputed trajectory states from Cache without reoptimization.
+All 6 existing automated tests passed after relocation.
+Regenerated the formatted Simulink model in Model/ from Script/.
+Compared 7 output signals with the previous step simulation: Time and Data
+were exactly equal for gap1_actual, gap2_actual, group1_actual, group2_actual,
+group1_velocity, group2_velocity and focal_target.
+Launched the GUI from Script/, selected 140 mm and exported its image to Results/.
+Verified Simulink.fileGenControl.CacheFolder points to the project's Cache/.
+Updated the stored acceptance report's video file path to Results/zoom_animation.mp4.
+
+Past execution logs retain their original paths as historical records.
+No optical prescription or controller parameter changes were required.

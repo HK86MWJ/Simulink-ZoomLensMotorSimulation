@@ -1,0 +1,10 @@
+# Normalize source text; preserve MATLAB models and saved results byte-for-byte.
+* text=auto
+*.m text eol=lf
+*.md text eol=lf
+*.slx binary
+*.slxc binary
+*.mat binary
+*.fig binary
+*.png binary
+*.mp4 binary

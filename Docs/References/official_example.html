@@ -1,0 +1,1407 @@
+<!DOCTYPE html><html lang="en"><head><script nonce="Nj7hysrXgeCO79hxhVpl8GYD">window.mwDocMetadata = {"isLoggedIn":false,"exampleVersionSpec":["\u003e=25.1"],"isArchivedDoc":false,"release":"R2026b"};</script>
+	
+	<!-- Template Source Page: /content/mathworks/www/en/template-service/help/full-header-footer-offcanvas-bs5 -->
+	<!-- Template Source Env: stage -->
+	<!-- Template Last Modified: 2026-06-23T07:46:22-04:00 -->
+	
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+
+	<link rel="icon" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/images/favicon.20260806155224309.ico" type="image/x-icon"/>
+	<link rel="canonical" href="https://www.mathworks.com/help/images/optimize-photographic-zoom-lens-component-positions.html"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	
+	
+		<meta name="twitter:card" content="summary_large_image"/>
+		<meta name="twitter:site" content="@MathWorks"/>
+		
+		<meta name="twitter:image" content="https://www.mathworks.com/template-service/help/full-header-footer-offcanvas-bs5/_jcr_content/ogImageSecureUrl.adapt.1200.medium.jpg/1744384063106.jpg"/>
+		<meta property="og:image:url" content="https://www.mathworks.com/template-service/help/full-header-footer-offcanvas-bs5/_jcr_content/ogImageSecureUrl.adapt.1200.medium.jpg/1744384063106.jpg"/>
+		<meta property="og:image:secure_url" content="https://www.mathworks.com/template-service/help/full-header-footer-offcanvas-bs5/_jcr_content/ogImageSecureUrl.adapt.1200.medium.jpg/1744384063106.jpg"/>
+	
+	<meta property="og:url" content="https://www.mathworks.com/help/images/optimize-photographic-zoom-lens-component-positions.html"/>
+	<meta property="og:description" content="This example demonstrates how to use numerical optimization techniques to optimize the positions of zoom groups and achieve a target focal length."/>
+	<meta property="og:title" content="Optimize Photographic Zoom Lens Component Positions - MATLAB &amp; Simulink"/>
+	<meta property="og:type" content="website"/>
+	
+
+	
+
+	<script nonce="Nj7hysrXgeCO79hxhVpl8GYD"> (function() { if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) { document.documentElement.classList.add('mw-theme-dark'); } else { document.documentElement.classList.add('mw-theme-light'); } })();	</script>
+	
+    
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/webvitals.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+
+	
+	
+
+	
+	
+	
+
+	
+
+	
+	
+		
+    
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/bootstrap5.min.20260806155224309.css" type="text/css"/>
+
+
+
+		
+    
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/bs5.min.20260806155224309.css" type="text/css"/>
+
+
+
+	
+	
+	
+    
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/offcanvasv5.min.20260806155224309.css" type="text/css"/>
+
+
+
+	
+
+	<link href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/fonts/roboto/roboto-latin-italic-300.20260806155224309.woff2" rel="preload" as="font" type="font/woff2" crossorigin=""/>
+	<link href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/fonts/roboto/roboto-latin-italic-400.20260806155224309.woff2" rel="preload" as="font" type="font/woff2" crossorigin=""/>
+	<link href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/fonts/roboto/roboto-latin-italic-500.20260806155224309.woff2" rel="preload" as="font" type="font/woff2" crossorigin=""/>
+	<link href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/fonts/roboto/roboto-latin-italic-700.20260806155224309.woff2" rel="preload" as="font" type="font/woff2" crossorigin=""/>
+	<link href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/fonts/roboto/roboto-latin-normal-300.20260806155224309.woff2" rel="preload" as="font" type="font/woff2" crossorigin=""/>
+	<link href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/fonts/roboto/roboto-latin-normal-400.20260806155224309.woff2" rel="preload" as="font" type="font/woff2" crossorigin=""/>
+	<link href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/fonts/roboto/roboto-latin-normal-500.20260806155224309.woff2" rel="preload" as="font" type="font/woff2" crossorigin=""/>
+	<link href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/fonts/roboto/roboto-latin-normal-700.20260806155224309.woff2" rel="preload" as="font" type="font/woff2" crossorigin=""/>
+	<link href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/fonts/mathworks.20260806155224309.woff" rel="preload" as="font" type="font/woff" crossorigin=""/>
+
+	
+		
+		<script nonce="Nj7hysrXgeCO79hxhVpl8GYD">(function(g,b,d,f){(function(a,c,d){if(a){var e=b.createElement("style");e.id=c;e.innerHTML=d;a.appendChild(e)}})(b.getElementsByTagName("head")[0],"at-body-style",d);setTimeout(function(){var a=b.getElementsByTagName("head")[0];if(a){var c=b.getElementById("at-body-style");c&&a.removeChild(c)}},f)})(window,document,"[class*='personalization-container']:not([id^='web-application']) {opacity: 0 !important}",1E3);</script> <script src="//assets.adobedtm.com/d0cc0600946eb3957f703b9fe43c3590597a8c2c/satelliteLib-e8d23c2e444abadc572df06537e2def59c01db09.js" async="" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+	
+	
+
+	
+
+	
+
+	<title>Optimize Photographic Zoom Lens Component Positions - MATLAB &amp; Simulink
+</title>
+	
+
+
+
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/jquery.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script><script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/jquery-migrate.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Script-Type" content="text/javascript"/>
+
+<link xmlns="http://www.w3.org/1999/xhtml" href="/help/releases/R2026b/includes/web/css/doc_center.css" rel="stylesheet" type="text/css"/>
+<link xmlns="http://www.w3.org/1999/xhtml" href="/help/releases/R2026b/includes/web/css/doc_center_localnav.css" rel="stylesheet" type="text/css"/>
+
+<script src="/help/releases/R2026b/includes/shared/equationrenderer/release/MathRenderer.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="/help/releases/R2026b/includes/shared/scripts/l10n.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="/help/releases/R2026b/includes/shared/scripts/docscripts.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="/help/releases/R2026b/includes/shared/scripts/f1help.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="/help/releases/R2026b/includes/shared/scripts/mw.imageanimation.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="/help/releases/R2026b/includes/shared/scripts/jquery.highlight.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="/help/releases/R2026b/includes/product/scripts/underscore-min.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+<script xmlns="http://www.w3.org/1999/xhtml" src="/help/releases/R2026b/includes/shared/scripts/localstorage.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+<script src="/help/releases/R2026b/includes/web/scripts/overload.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="/help/releases/R2026b/includes/shared/scripts/helpservices.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="/help/releases/R2026b/includes/product/scripts/productfilter.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="/help/releases/R2026b/includes/shared/scripts/matlab_dialog_shared.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<link href="/help/releases/R2026b/includes/shared/highlight/styles/mwdochighlight.min.css" rel="stylesheet" type="text/css"/>
+<script src="/help/releases/R2026b/includes/shared/highlight/highlight.min.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<link href="/help/releases/R2026b/includes/web/css/doc_center_print.css" rel="stylesheet" type="text/css" media="print"/>
+
+<script src="/matlabcentral/jscript/userarea-typeahead-v1.js" defer="" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+  <script type="text/javascript" nonce="Nj7hysrXgeCO79hxhVpl8GYD">
+    document.addEventListener("DOMContentLoaded", function () {
+      const possibleSelectors = ['#query','#inpage_query'];
+      possibleSelectors.forEach(selector => {
+        const inputElement = document.querySelector(selector);
+        if (inputElement) {
+          const customElement = document.createElement('userarea-typeahead');
+          customElement.setAttribute('input-selector', selector);
+          customElement.setAttribute('collection', 'documentation');
+          customElement.setAttribute('app-label', 'Documentation');
+          customElement.setAttribute('env', 'prod');
+          customElement.setAttribute('site-language', 'en');
+          customElement.setAttribute('blank-state', 'true');
+          document.body.appendChild(customElement);
+        }
+      });
+    });
+</script> 
+	<meta name="robots" content="all"/><meta name="description" content="This example demonstrates how to use numerical optimization techniques to optimize the positions of zoom groups and achieve a target focal length."/><style>#localnav:has(.alert) { height:calc(44px + 36px); padding-top:36px; }
+			#localnav .alert { width: 100%; padding-top:2px; padding-right:5px; padding-bottom:2px; border-top:none; border-left:none; border-right:none; border-radius:0; display:flex; align-items:center; flex-direction:row; flex-wrap:nowrap; gap:7px; position:absolute; top:0; z-index:2;  }
+			#localnav .alert p { margin-bottom:0; }
+			#localnav .alert-dismissible .btn-close { margin-left:auto; position:relative; }</style><link rel="alternate" hreflang="x-default" href="https://www.mathworks.com/help/images/optimize-photographic-zoom-lens-component-positions.html"/>
+	<link rel="alternate" hreflang="de" href="https://de.mathworks.com/help/images/optimize-photographic-zoom-lens-component-positions.html"/>
+	<link rel="alternate" hreflang="en" href="https://www.mathworks.com/help/images/optimize-photographic-zoom-lens-component-positions.html"/>
+	<link rel="alternate" hreflang="es" href="https://la.mathworks.com/help/images/optimize-photographic-zoom-lens-component-positions.html"/>
+	<link rel="alternate" hreflang="fr" href="https://fr.mathworks.com/help/images/optimize-photographic-zoom-lens-component-positions.html"/>
+	<link rel="alternate" hreflang="it" href="https://it.mathworks.com/help/images/optimize-photographic-zoom-lens-component-positions.html"/>
+	<link rel="alternate" hreflang="ja" href="https://jp.mathworks.com/help/images/optimize-photographic-zoom-lens-component-positions.html"/>
+	<link rel="alternate" hreflang="ko" href="https://kr.mathworks.com/help/images/optimize-photographic-zoom-lens-component-positions.html"/>
+	<link rel="alternate" hreflang="zh" href="https://ww2.mathworks.cn/help/images/optimize-photographic-zoom-lens-component-positions.html"/></head>
+
+
+
+	<body id="template_offcanvas" class="site_lang_en templateservice offcanvas_fixed
+		  
+		  
+		  
+		  
+ 		  
+		  -has_usernav
+		  -is_full_header
+		  
+		  " data-cid="helpcenter">
+		<a class="skip_link visually-hidden-focusable" href="#main">Skip to content</a>
+
+		
+		
+
+
+	<div class="sticky-top" id="sticky_container">
+		
+
+	<header class="-has_matrix
+					 -has_mwa
+					 -has_store
+					 -has_topnav
+					 -has_subnav
+					 ">
+		<nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+			<div class="container-fluid container-lg">
+				<div class="d-lg-flex flex-row align-items-center" id="header_content_container">
+					<a class="navbar-brand d-inline-flex" href="/?s_tid=user_nav_logo">
+						
+						<img src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/images/mathworks-logo-membrane.20260806155224309.svg" class="mw_logo" alt="MathWorks" width="34" height="30"/>
+					</a>
+
+					<div class="sectionHead sectionhead containsResourceName resourceClass-sectionhead">
+
+
+	<p class="d-inline-flex d-lg-none h1">
+		<a class="add_cursor_pointer" href="/help/?s_tid=user_nav_help">MATLAB Help Center</a>
+		
+	</p>
+	
+
+
+
+
+</div>
+
+
+					<div class="d-flex d-lg-none" id="global_mobile_actuator_container_search">
+						<button class="navbar-toggler btn collapsed" id="global_search_mobile_actuator" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#global_search_mobile" data-bs-target="#global_search_mobile" aria-controls="global_search_mobile" aria-expanded="false" aria-label="Toggle Search">
+							<span class="icon-search"></span>
+						</button>
+					</div>
+					<div class="navbar-collapse collapse" id="global_search_mobile">
+						<div id="global_search_mobile_placeholder"></div>
+						<div id="global_search_container">
+							<div class="sectionHeadSearchBox sectionheadsearchbox containsResourceName resourceClass-sectionheadsearchbox">
+
+	
+
+	
+		
+    
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/sectionheadsearchbox/bs5.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+		
+		
+    
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/typeahead.min.20260806155224309.css" type="text/css"/>
+
+
+
+		
+		
+		
+			
+		
+		<form name="search" id="site_search" class="site_search" action="/search/user-center" method="get" data-release="R2026b" data-language="en">
+			<div class="input-group">
+				<label id="search-mathworks" class="visually-hidden" for="query">Search or ask a question</label>
+				<input type="hidden" name="c[]" id="site_search_collection" value="usercenter" disabled=""/>
+				<input type="search" name="q" id="query" class="form-control conjoined_search" aria-autocomplete="list" autocomplete="off" role="combobox" aria-controls="search_suggestions" aria-haspopup="listbox" aria-expanded="true" aria-activedescendant="" placeholder="Search or ask a question" data-site-domain="www" data-site-language="en" data-typeahead-proxy-url="https://services.mathworks.com/typeahead" data-typeahead-type="basic" data-typeahead-result-count="10" data-label-suggestions="Suggestions" data-label-see-all-results="See all results" aria-labelledby="search-mathworks"/>
+				<button type="button" id="clearsearch" class="btn btn_color_blue btn-outline icon-remove visually-hidden-focusable" aria-label="Clear search"></button>
+				
+				
+				<button type="submit" id="searchbutton" class="btn btn_color_blue btn-outline icon-search" aria-label="Search"></button>
+			</div>
+		</form>
+	
+
+	
+
+</div>
+
+						</div>
+					</div>
+
+
+					<div class="d-flex d-lg-none" id="global_mobile_actuator_container_navigation">
+						<button class="navbar-toggler collapsed btn" id="global_navigation_mobile_actuator" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#global_navigation" data-bs-target="#global_navigation" aria-controls="global_navigation" aria-expanded="false" aria-label="Toggle Main Navigation">
+							<span class="icon-menu-full"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="global_navigation">
+						
+						<div class="topNavigation topnavigation containsResourceName resourceClass-topnavigation">
+
+
+
+	<ul class="navbar-nav flex-grow-1 align-items-lg-center mb-0">
+		
+		
+			<li class="nav-item dropdown" id="globalnav_item_helpcenter">
+				
+	
+	
+	
+
+	
+
+	<a class="nav-link active " href="/help/?s_tid=user_nav_help">
+
+		
+
+		
+			
+			MATLAB Help Center</a>
+
+		
+		
+	
+
+				
+			</li>
+		
+			<li class="nav-item dropdown" id="globalnav_item_community">
+				
+	
+	
+	
+
+	
+
+	<a class="nav-link " href="/matlabcentral/?s_tid=user_nav_community">
+
+		
+
+		
+			
+			Community</a>
+
+		
+		
+	
+
+				
+			</li>
+		
+			<li class="nav-item dropdown" id="globalnav_item_learning">
+				
+	
+	
+	
+
+	
+
+	<a class="nav-link " href="https://matlabacademy.mathworks.com/?s_tid=user_nav_learning">
+
+		
+
+		
+			
+			Learning</a>
+
+		
+		
+	
+
+				
+			</li>
+		
+
+		
+		<li class="nav-item  -alignment_lg_end" id="globalnav_item_matlab">
+			
+			
+
+			
+	
+	
+	
+
+	
+
+	<a class="not-logged-in btn btn_color_blue d-block d-lg-inline-flex " data-link="lead" data-offertype="trial" href="/campaigns/products/trials.html?prodcode=ML&amp;s_tid=user_nav_getml" style="display:none !important;">
+
+		
+
+		
+			
+			Get MATLAB</a>
+
+		
+		
+	
+
+			
+	
+	
+	
+
+	
+
+	<a class="logged-in btn btn_color_blue d-block d-lg-inline-flex " data-link="lead" data-offertype="trial" href="/campaigns/products/trials.html?prodcode=ML&amp;s_tid=user_nav_getml" style="display:none !important;">
+
+		
+
+		
+			
+			MATLAB</a>
+
+		
+		
+	
+
+
+		</li>
+
+		
+		
+			<li class="nav-item dropdown -alignment_lg_end" id="globalnav_item_mwa">
+				<a aria-label="Sign In to Your MathWorks Account" class="nav-link headernav_login mwa-nav_login" href="#" id="mwanav_item_login" style="display: none;">
+					Sign In
+				</a>
+
+				<a aria-expanded="false" class="nav-link headernav_logout dropdown-toggle" data-bs-toggle="dropdown" data-toggle="dropdown" href="#" id="mwanav_actuator" role="button" style="display: none;" title="Access your MathWorks Account">
+					<span class="mwanav_avatar mwa_image_drop_down"></span>
+					<span class="mobile_account_name visually_hidden_xxl visually_hidden_xl visually_hidden_lg hidden-md hidden-lg"></span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-lg-end" id="mwanav_dropdown_menu">
+					<li id="mwanav_item_account"><a class="mwa-account dropdown-item">My Account</a></li>
+					<li id="mwanav_item_community"><a class="mwa-community-profile dropdown-item">My Community Profile</a></li>
+					<li id="mwanav_item_associate"><a class="mwa-link-license dropdown-item">Link License</a></li>
+					<li><hr class="dropdown-divider"/></li>
+					<li id="mwanav_item_logout"><a class="mwa-logout dropdown-item">Sign Out</a></li>
+				</ul>
+			</li>
+		
+
+		
+
+		
+
+		<li class="nav-item d-block d-lg-none" id="globalnav_item_mobile_cta_support">
+			
+	
+	
+	
+
+	
+
+	<a class="nav-link " href="/support/contact_us.html" id="mobile_cta_support">
+
+		
+
+		
+			<span class="icon-phone"></span>
+			Contact MathWorks Support</a>
+
+		
+		
+	
+
+		</li>
+
+		<li class="nav-item d-block d-lg-none" id="globalnav_item_mobile_cta_corporate">
+			
+	
+	
+	
+
+	
+
+	<a class="nav-link " href="/" id="mobile_cta_corporate">
+
+		
+
+		
+			<span class="icon-membrane"></span>
+			Visit mathworks.com</a>
+
+		
+		
+	
+
+		</li>
+
+		<li class="nav-item dropdown d-none d-lg-block -alignment_lg_end" id="globalnav_item_search">
+			<a aria-expanded="false" aria-label="Search" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-toggle="dropdown" href="#" role="button"><span class="icon-search"></span></a>
+			<div class="dropdown-menu">
+				<div class="container-lg">
+					<div class="row align-items-center">
+						
+						
+							<div class="col">
+								<div id="global_search_desktop_placeholder"></div>
+							</div>
+						
+					</div>
+				</div>
+			</div>
+		</li>
+
+		<li class="nav-item d-none d-lg-block -alignment_lg_end" id="globalnav_item_matrix">
+			<mw-matrix lang="en" tier="DOTCOM" env="prod" bsversion="bs5" class="nav-link" host="https://www.mathworks.com"></mw-matrix>
+		</li>
+	</ul>
+
+
+	
+
+
+</div>
+
+					</div>
+				</div>
+
+				
+			</div>
+		</nav>
+	</header>
+
+
+
+		
+		
+		
+	</div>
+
+
+
+
+
+		
+<div id="offcanvas_container">
+	
+
+	<div class="collapse collapse-horizontal" id="offcanvas_menu" data-offcanvas-id="helpcenter-offcanvas">
+		<button class="btn collapsed" id="offcanvas_actuator" type="button" data-bs-toggle="collapse" data-bs-target="#offcanvas_menu" aria-expanded="false" aria-controls="offcanvas_menu">
+			<span class="icon-offcanvas-menu"><span class="visually-hidden">Off-Canvas Navigation Menu Toggle</span></span> <span class="offcanvas_actuator_label" aria-hidden="true">Contents</span>
+		</button>
+		<div id="offcanvas_menu_content"><nav class="offcanvas_nav" role="navigation">
+<div class="search_refine_v4 -presentation_browse">
+<div id="facets_area">
+<div class="personalization-container" id="web-application-offcanvas-container">
+<ol itemscope="" itemtype="https://schema.org/BreadcrumbList" class="nav_breadcrumb list-unstyled" id="ul_left_nav_ancestors">
+  <li itemscope="" itemtype="http://www.schema.org/ListItem" itemprop="itemListElement">
+	  <a href="/help/index.html?s_tid=CRUX_lftnav" itemprop="item">
+      <span itemprop="name">Documentation Home</span>
+		</a>
+    <meta itemprop="position" content="1"/>
+	</li>
+</ol>
+<ol itemscope="" itemtype="https://schema.org/BreadcrumbList" class="nav_breadcrumb list-unstyled" id="ul_left_nav_productgroups">
+<li itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+	<a href="/help/overview/image-processing-and-computer-vision.html?s_tid=hc_product_group_bc" itemprop="item">
+    <span itemprop="name">Image Processing and Computer Vision</span>
+	</a>
+  <meta itemprop="position" content="1"/>
+</li></ol><ol itemscope="" itemtype="https://schema.org/BreadcrumbList" class="nav_disambiguation list-unstyled"><li itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+						<a href="index.html?s_tid=CRUX_lftnav" id="index" itemprop="item">
+              <span itemprop="name">Image Processing Toolbox</span>
+            </a>
+            <meta itemprop="position" content="1"/>
+					</li><li itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+						<a href="optics-design-and-analysis.html?s_tid=CRUX_lftnav" id="mw_221fe259-e8a1-49be-a899-4afc88003d5e" itemprop="item">
+              <span itemprop="name">Optical System Design and Analysis</span>
+            </a>
+            <meta itemprop="position" content="2"/>
+					</li></ol><ul class="nav_scrollspy nav list-unstyled" id="nav_scrollspy" aria-label="On this page">
+	<li class="nav_scrollspy_function nav-item notranslate">
+    <a class="intrnllnk" href="#doc_center_content" style="color: inherit; text-decoration: none;">Optimize Photographic Zoom Lens Component Positions</a>
+	</li>
+
+<li class="nav_scrollspy_title" id="SSPY810-refentry">On this page</li><li class="nav-item"><a class="intrnllnk nav-link" href="#OptimizePhotographicZoomLensComponentPositionsExample-1">Visualize Moveable Zoom Component Groups</a></li><li class="nav-item"><a class="intrnllnk nav-link" href="#OptimizePhotographicZoomLensComponentPositionsExample-5">Determine Component Position Ranges</a></li><li class="nav-item"><a class="intrnllnk nav-link" href="#OptimizePhotographicZoomLensComponentPositionsExample-7">Minimize Merit Function</a></li><li class="nav-item"><a class="intrnllnk nav-link" href="#OptimizePhotographicZoomLensComponentPositionsExample-8">Visualize Optimization Results</a></li><li class="nav-item"><a class="intrnllnk nav-link" href="#OptimizePhotographicZoomLensComponentPositionsExample-10">Analyze Optimized System</a></li><li class="nav-item"><a class="intrnllnk nav-link" href="#OptimizePhotographicZoomLensComponentPositionsExample-11">Helper Functions</a></li><li class="nav-item"><a class="intrnllnk nav-link" href="#OptimizePhotographicZoomLensComponentPositionsExample-14">References</a></li></ul></div>
+</div>
+</div>
+</nav>
+			<div class="sidebar parsys containsResourceName resourceClass-parsys"><div class="targetcontainer containsResourceName resourceClass-targetcontainer section">
+
+
+
+<div class="personalization-container " id="web-application-offcanvas-container">
+	<div><div class="targetContent parsys containsResourceName resourceClass-parsys">
+</div>
+</div>
+</div></div>
+
+</div>
+
+		</div>
+		
+    
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/offcanvasv5.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+	</div>
+
+
+	<div id="offcanvas_body_container">
+		<div id="offcanvas_body" class=" -has_stickynav">
+			
+			<div class="introParsys parsys containsResourceName resourceClass-parsys">
+</div>
+
+			<div class="content_container p-0" id="content_container">
+				<div class="container-fluid container-lg">
+					<div class="row">
+						<div class="col" id="offcanvas_fixed_menu_container"> </div>
+						<div class="col" id="offcanvas_content_container">
+							
+
+	
+	<div class="localnav" id="localnav">
+		<div class="localnav_container">
+			<div class="container-fluid container-lg">
+				<div class="row">
+					<div class="col-12">
+						<nav class="navbar navbar-expand-lg" aria-label="Local Navigation">
+							<button class="navbar-toggler" type="button" id="localnav_actuator" data-toggle="collapse" data-bs-toggle="collapse" data-target="#local_navigation" data-bs-target="#local_navigation" aria-controls="localnav" aria-expanded="false" aria-label="Toggle navigation"><span class="icon-kebab"></span></button>
+							<div class="collapse navbar-collapse" id="local_navigation">
+								<div class="localNavigation localnav containsResourceName resourceClass-localnav">
+
+
+
+	
+	<ul class="navbar-nav  crux_resource_list crux_browse" id="localnav_navbar">
+	<li class="nav-item crux_resource" data-nav-id="crux_nav_documentation">
+		<a class="nav-link active" data-id="" href="/help/images/optics-design-and-analysis.html?s_tid=CRUX_topnav">
+			Documentation
+	    </a>
+	</li>
+
+	<li class="nav-item crux_resource" data-nav-id="crux_nav_examples">
+		<a class="nav-link " data-id="" href="/help/images/examples.html?s_tid=CRUX_topnav&amp;category=optics-design-and-analysis">
+			Examples
+	    </a>
+	</li>
+
+	<li class="nav-item crux_resource" data-nav-id="crux_nav_function">
+		<a class="nav-link " data-id="" href="/help/images/referencelist.html?type=function&amp;s_tid=CRUX_topnav&amp;category=optics-design-and-analysis">
+			Functions
+	    </a>
+	</li>
+
+	<li class="nav-item crux_resource" data-nav-id="crux_nav_app">
+		<a class="nav-link " data-id="" href="/help/images/referencelist.html?type=app&amp;s_tid=CRUX_topnav&amp;category=optics-design-and-analysis">
+			Apps
+	    </a>
+	</li>
+
+	<li class="nav-item crux_resource" data-nav-id="crux_nav_video">
+		<a class="nav-link " data-id="" href="/support/search.html?fq%5B%5D=asset_type_name:video&amp;fq%5B%5D=category:images/optics-design-and-analysis&amp;page=1&amp;s_tid=CRUX_topnav">
+			Videos
+	    </a>
+	</li>
+
+	<li class="nav-item crux_resource" data-nav-id="crux_nav_answers">
+		<a class="nav-link " data-id="" href="/support/search.html?fq%5B%5D=asset_type_name:answer&amp;fq%5B%5D=category:images/optics-design-and-analysis&amp;page=1&amp;s_tid=CRUX_topnav">
+			Answers
+	    </a>
+	</li>
+</ul>
+
+
+
+
+</div>
+
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+							<div id="offcanvas_focus_actuator" tabindex="0" class="d-block d-md-none"><span class="visually-hidden">Main Content</span></div>
+							
+
+<main id="main" tabindex="-1">
+	
+	<section><div class="mainParsys parsys containsResourceName resourceClass-parsys"><div class="cssjs containsResourceName section resourceClass-cssjs">
+
+
+
+
+
+
+<style>
+#global_search_container > .sectionHeadSearchBox:has(#suggestions) { 
+    align-items: flex-end;
+    
+    #search_scope_doc { width:100%; max-width:540px; }
+}
+</style>
+</div>
+<div class="cssjs containsResourceName section resourceClass-cssjs">
+
+
+
+
+
+
+<style>
+@media (max-width:991.98px) {
+
+    #localnav .nav-item:not(:first-child) .nav-link { padding-left:24px !important; }
+    #localnav .dropdown-menu .dropdown-item { padding-left:calc(var(--bs-dropdown-item-padding-x) * 3); }
+
+}
+</style>
+</div>
+<div class="cssjs containsResourceName section resourceClass-cssjs">
+
+
+
+
+
+	
+	
+	
+    
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/akamai.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/enhancedchat.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+
+
+
+</div>
+<div class="cssjs containsResourceName section resourceClass-cssjs">
+
+
+
+
+
+
+<style>
+@media (max-width: 991.98px) {
+    #localnav_actuator { width:auto !important; padding-left:10px !important; display: flex !important; align-items:center !important; flex-direction: row-reverse !important; justify-content:center !important; }
+    #localnav_actuator:after { padding-right:5px; content:"Resources"; font-size:14px; white-space:nowrap; }
+    #localnav_actuator .icon-kebab { position:relative; top:-1px; }
+    #localnav_actuator .icon-kebab:before { content: "\e60f" !important; font-size:16px; }
+}
+</style>
+</div>
+<div class="cssjs containsResourceName section resourceClass-cssjs">
+
+
+
+
+
+	
+	
+    
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/mathworks-aem.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/searchrefine.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/panel.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/card.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/search.min.20260806155224309.css" type="text/css"/>
+
+
+
+	
+
+
+
+</div>
+<div class="cssjs containsResourceName section resourceClass-cssjs">
+
+
+
+
+
+	
+	
+    
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/form.min.20260806155224309.css" type="text/css"/>
+
+
+
+	
+
+
+
+</div>
+<div class="cssjs containsResourceName section resourceClass-cssjs">
+
+
+
+
+
+	
+    
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/nuggets.min.20260806155224309.css" type="text/css"/>
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/handlebars.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/nuggets.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+	
+	
+
+
+
+</div>
+<div class="cssjs containsResourceName section resourceClass-cssjs">
+
+
+
+
+
+	
+    
+
+
+
+	
+	
+
+
+
+</div>
+<div class="cssjs containsResourceName section resourceClass-cssjs">
+
+
+
+
+
+	
+    
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/accordion.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/alert.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/band.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/blockquote.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/image.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/inpagenav.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/table.min.20260806155224309.css" type="text/css"/>
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/accordion.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/panel.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+	
+	
+
+
+
+</div>
+<div class="targetcontainer containsResourceName resourceClass-targetcontainer section">
+
+
+
+<div class="personalization-container " id="web-application-body-container">
+
+
+
+
+
+
+<section xmlns="http://www.w3.org/1999/xhtml" id="doc_center_content" itemprop="content" lang="en" data-language="en" data-bs-spy="scroll" data-bs-target="#nav_scrollspy"><div id="pgtype-topic">
+<section><div class="d-flex justify-content-between align-items-baseline title_with_release_mark"><h1 class="r2026b" itemprop="title content" id="mw_5d13c805-0ce8-4e98-aba9-ad87a8504a34">Optimize Photographic Zoom Lens Component Positions</h1><span class="add_font_release_mark"><strong>R</strong>2026<strong>b</strong></span></div><div class="examples_short_list hidden_ios_android" data-products="ML OPTICS OP"><div data-pane="metadata" class="card metadata_container"><div class="card-body metadata_content"><p class="add_margin_5">This example uses:</p><ul class="list-unstyled add_border_bottom example_product_list" itemprop="requiredprods"><li><a class="coming_from_product" href="matlab:matlab.internal.addons.showAddon(&#39;OPTICS&#39;)">Optical Design and Simulation Library for Image Processing Toolbox</a><a class="not_coming_from_product" href="../images/optics-design-and-analysis.html">Optical Design and Simulation Library for Image Processing Toolbox</a></li><li><a class="coming_from_product" href="matlab:matlab.internal.addons.showAddon(&#39;OP&#39;)">Optimization Toolbox</a><a class="not_coming_from_product" href="../optim/index.html">Optimization Toolbox</a></li></ul><div class="d-grid"><a class="btn btn_color_blue" data-ex-genre="Live Script" href="matlab:openExample(&#39;optics/OptimizePhotographicZoomLensComponentPositionsExample&#39;)">Open Live Script</a></div></div></div></div><div itemscope="" itemtype="http://www.mathworks.com/help/schema/MathWorksDocPage/Example" itemprop="example" class="em_example"><meta itemprop="exampleid" content="optics-OptimizePhotographicZoomLensComponentPositionsExample"/><meta itemprop="exampletitle" content="Optimize Photographic Zoom Lens Component Positions"/></div><span id="OptimizePhotographicZoomLensComponentPositionsExample" class="anchor_target"></span><p class="shortdesc">This example demonstrates how to use numerical optimization techniques to optimize the positions of zoom groups and achieve a target focal length. A <span class="emphasis"><em>zoom group</em></span> is a series of optical elements that have fixed positions relative to each other. Photographic zoom lenses are lenses that have a variable focal length, enabling photographers to zoom in or out on a subject without switching to a different lens. These lenses can contain multiple zoom groups that can be moved to change the focal length of a system.</p><p>In this example, you optimize zoom group positions to obtain a target focal length and RMS spot size. The RMS spot size quantifies how closely to the focal point the light rays converge at the image plane, which is crucial for determining the sharpness and clarity of the image produced by the optical system.</p><p>This example requires the Optical Design and Simulation Library for Image Processing Toolbox™ and the Optimization Toolbox™. You can install the Optical Design and Simulation Library for Image Processing Toolbox from Add-On Explorer. For more information about installing add-ons, see <a class="a" data-docid="matlab_env#buytlwx" href="../matlab/matlab_env/get-add-ons.html">Get and Manage Add-Ons</a>.</p><div class="procedure"><h3 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-1">Visualize Moveable Zoom Component Groups</h3><p>The reference optical system design is a 70–210 mm F/2.8–4 zoom lens with two moveable zoom groups <a class="intrnllnk" href="optimize-photographic-zoom-lens-component-positions.html#mw_rtc_OptimizePhotographicZoomLensComponentPositionsExample_M_7DC00FD4">[1]</a>. This system contains these distinct parts:</p><div class="itemizedlist"><ul><li><p>The focus group containing components C1 and C2 (fixed).</p></li><li><p>The first zoom group containing the two doublets, C3 and C4 (moveable).</p></li><li><p>The second moveable zoom group containing the components from C5 to C12 (moveable).</p></li><li><p>The image plane C13, at a fixed location (fixed).</p></li></ul></div><p>The relative positions of the components within each of the two moveable groups is fixed.</p><h4 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-2">Load Photographic Zoom System Configurations</h4><p>Load two photographic zoom optical systems, <code class="literal">opsysz1</code> and <code class="literal">opsysz2</code>, with different positionings of the two moveable component groups using the <code class="literal">createPhotoZoom</code> helper function. The function is attached to this example as a supporting file. </p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>opsysz1 = createPhotoZoom(ZoomPosition=1);
+opsysz2 = createPhotoZoom(ZoomPosition=2);</pre></div></div></div><h4 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-3">Compute Focal Length</h4><p>To compute the focal length of each system, compute the paraxial information for each optical system using the <code class="literal">paraxialInfo</code> object function.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>paraxialz1 = paraxialInfo(opsysz1);
+paraxialz2 = paraxialInfo(opsysz2);</pre></div></div></div><p>Define the focal length of each optical system using the <code class="literal">FocalLength</code> property of the corresponding <code class="literal">ParaxialInfo</code> object.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>fz1 = paraxialz1.FocalLength</pre></div></div></div><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeoutput"><pre>fz1 = 
+72.0158
+</pre></div></div></div><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>fz2 = paraxialz2.FocalLength</pre></div></div></div><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeoutput"><pre>fz2 = 
+203.7305
+</pre></div></div></div><h4 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-4">Visualize Moveable Component Groups</h4><p>Trace the marginal rays through each optical system using the <code class="literal">traceMarginalRays</code> object function.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>raysz1 = traceMarginalRays(opsysz1);
+raysz2 = traceMarginalRays(opsysz2);</pre></div></div></div><p>Display a 2-D visualization of the optical system in the first configuration using the <code class="literal">view2d</code> function, and visualize the traced marginal rays through the system using the <code class="literal">addRays</code> object function.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>hv = view2d(opsysz1,Title=<span style="color:var(--mw-color-matlabString)">&#34;Focal length: &#34;</span>+fz1+<span style="color:var(--mw-color-matlabString)">&#34; mm&#34;</span>,Labels=<span style="color:var(--mw-color-matlabString)">&#34;component&#34;</span>);
+addRays(hv,raysz1)</pre></div></div></div><div class="informalfigure"><div id="d127e76729" class="mediaobject"><p><img src="../examples/optics/OptimizePhotographicZoomLensComponentPositionsExample_01.png" width="560"/></p></div></div><p>Display a 2-D visualization of the optical system in the second configuration, and visualize the traced marginal rays through the system. Note that the focal length is larger in the second scenario due to differences in the gap between components C2 and C3 and the gap between components C4 and C5.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>hv = view2d(opsysz2,Title=<span style="color:var(--mw-color-matlabString)">&#34;Focal length: &#34;</span>+fz2+<span style="color:var(--mw-color-matlabString)">&#34; mm&#34;</span>,Labels=<span style="color:var(--mw-color-matlabString)">&#34;component&#34;</span>);
+addRays(hv,raysz2)</pre></div></div></div><div class="informalfigure"><div id="d127e76736" class="mediaobject"><p><img src="../examples/optics/OptimizePhotographicZoomLensComponentPositionsExample_02.png" width="560"/></p></div></div><h3 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-5">Determine Component Position Ranges</h3><p>Model the possible configuration of the two moveable zoom groups using the two previously established variables: the gap between C2 and C3 and the gap between C4 and C5. To ensure that each configuration results in a physical system without component overlap, you must determine the maximum value of the sum of the two gaps. </p><p>Load a photographic zoom lens optical system using the <code class="literal">createPhotoZoom</code> helper function, and display a 2-D visualization of the system.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>opsys = createPhotoZoom;
+view2d(opsys,Labels=<span style="color:var(--mw-color-matlabString)">&#34;surface&#34;</span>);</pre></div></div></div><div class="informalfigure"><div id="d127e76749" class="mediaobject"><p><img src="../examples/optics/OptimizePhotographicZoomLensComponentPositionsExample_03.png" width="560"/></p></div></div><p>The first focus group and the last component, the image plane, must remain fixed. Thus, the space where both zoom groups can exist is between the second surface of component C2 (surface S5) and the first surface of component C13 (surface S27).</p><h4 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-6">Define Range of Moveable Components</h4><p>Define the global positions of all surfaces in the system using the <code class="literal">SurfaceTable</code> property of the <code class="literal">opticalSystem</code> object <code class="literal">opsys</code>. Define the surface positions using only the *z-*coordinate, as the optical system is fully aligned with the <span class="emphasis"><em>z</em></span>-axis.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>stbl = opsys.SurfaceTable;
+surfacePositions = stbl.Position(:,3);</pre></div></div></div><p>Compute the distance between the first focus group and the image plane, which typically contains a sensor.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>d_5_Sensor = surfacePositions(27) - surfacePositions(5);</pre></div></div></div><p>Compute the thickness of the first zoom component.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>d_6_11 = surfacePositions(11) - surfacePositions(6);</pre></div></div></div><p>Compute the thickness of the second zoom component.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>d_12_26 = surfacePositions(26) - surfacePositions(12);</pre></div></div></div><p>Compute the maximum physical value of the sum of the two gaps between components (from C2 to C3 and from C4 to C5). This is the maximum value either of two distances, C2 to C3 or C4 to C5, can take when the other is 0. You can use this value as a constraint when optimizing component positions.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>dMax = d_5_Sensor - d_6_11 - d_12_26;</pre></div></div></div><h3 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-7">Minimize Merit Function</h3><p>Use the merit function to achieve a specified focal length and satisfy additional optical constraints, such as an optimal RMS spot size. The merit function must return a scalar value that quantifies the deviation of the proposed solution from the target value. The optimizer then aims to minimize this deviation. In this section, you minimize the merit function and optimize the zoom group positions by using the <a class="a" data-docid="optim_ug#busog7r" href="../optim/ug/fmincon.html"><code class="olink">fmincon</code></a><span role="cross_prod"> (Optimization Toolbox)</span> function.</p><p>Load an optical system with moveable zoom groups.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>opsys = createPhotoZoom;</pre></div></div></div><p>Save the position of the image plane, which must remain fixed, to the <code class="literal">UserData</code> property.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>opsys.UserData.FixedImagePlanePosition = surfacePositions(27);</pre></div></div></div><p>Define a set of focal lengths for which to optimize zoom group positions.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>targetFocalLengths = 70:5:210;</pre></div></div></div><p>Initialize a matrix for containing the solutions returned by the <code class="literal">fmincon</code> function.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>zoomGrpDistances = zeros(numel(targetFocalLengths),2);</pre></div></div></div><p>Define a sample solution for the optimizer to test of the form <code class="literal">[gap1 gap2]</code>, where <code class="literal">gap1</code> is the gap between C2 and C3, and <code class="literal">gap2</code> is the gap between C4 and C5.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>distSol = [distanceAfter(opsys,2) distanceAfter(opsys,4)];</pre></div></div></div><p>Determine solutions for each focal length independently. Construct the merit function using the <a class="intrnllnk" href="optimize-photographic-zoom-lens-component-positions.html#OptimizePhotographicZoomLensComponentPositionsExample-13"><code class="literal">opticalMeritFunc</code></a>, helper function and specify it to the <code class="literal">fmincon</code> function as the objective function to minimize. If you have a Parallel Computing Toolbox™, compute the solutions in parallel.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre><span style="color:var(--mw-color-matlabKeyword)">parfor</span> ind = 1:numel(targetFocalLengths)
+    problem = struct;
+    problem.x0 = distSol;
+    <span style="color:var(--mw-color-matlabComment)">% Express the total distance constraint, A.x &lt;= b. The sum of the two</span>
+    <span style="color:var(--mw-color-matlabComment)">% distances must be less than or equal to dMax.</span>
+    problem.A = [1 1];
+    problem.b = dMax;
+
+    <span style="color:var(--mw-color-matlabComment)">% Set a lower bound to prevent first zoom group from intersecting the</span>
+    <span style="color:var(--mw-color-matlabComment)">% focus group. This constraint can also come from mechanical</span>
+    <span style="color:var(--mw-color-matlabComment)">% limitations in the manufacturing processing.</span>
+    problem.lb = [1 0];
+
+    <span style="color:var(--mw-color-matlabComment)">% Specify solver and solver options.</span>
+    problem.solver = <span style="color:var(--mw-color-matlabString)">&#34;fmincon&#34;</span>;
+    problem.options = optimoptions(<span style="color:var(--mw-color-matlabString)">&#34;fmincon&#34;</span>);
+    problem.options.Display = <span style="color:var(--mw-color-matlabString)">&#34;none&#34;</span>;
+    <span style="color:var(--mw-color-matlabComment)">% Optionally, display more information by uncommenting the next line.</span>
+    <span style="color:var(--mw-color-matlabComment)">%problem.options.Display =&#34;iter-detailed&#34;;</span>
+
+    <span style="color:var(--mw-color-matlabComment)">% The current merit function is insensitive to the default step size.</span>
+    <span style="color:var(--mw-color-matlabComment)">% Increase the step size to ensure the merit functions changes for</span>
+    <span style="color:var(--mw-color-matlabComment)">% small deltas in the candidate solutions.</span>
+    problem.options.FiniteDifferenceStepSize = 1e-3;
+
+    <span style="color:var(--mw-color-matlabComment)">% Increase step tolerance to improve runtime efficiency. You can reduce</span>
+    <span style="color:var(--mw-color-matlabComment)">% the step tolerance to potentially get better results at the cost of </span>
+    <span style="color:var(--mw-color-matlabComment)">% additional runtime.</span>
+    problem.options.StepTolerance = 1e-2;
+
+    <span style="color:var(--mw-color-matlabComment)">% Set the optical merit function, using the opticalMeritFunc helper </span>
+    <span style="color:var(--mw-color-matlabComment)">% function as the objective function for the optimizer.</span>
+    problem.objective = @(x)opticalMeritFunc(x,opsys,targetFocalLengths(ind));
+
+    <span style="color:var(--mw-color-matlabComment)">% Run the optimizer using the fmincon function.</span>
+    [zoomGrpDistances(ind,:),fval,exitflag,output] = fmincon(problem);
+<span style="color:var(--mw-color-matlabKeyword)">end</span></pre></div></div></div><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeoutput"><pre>Starting parallel pool (parpool) using the &#39;Processes&#39; profile ...
+09-Jan-2026 18:16:26: Job Queued. Waiting for parallel pool job with ID 3 to start ...
+Connected to parallel pool with 4 workers.
+</pre></div></div></div><h3 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-8">Visualize Optimization Results  </h3><p>Plot the solutions, the optimized zoom group positions, as a function of the corresponding target focal lengths.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>figure
+scatter(targetFocalLengths,zoomGrpDistances,<span style="color:var(--mw-color-matlabString)">&#34;filled&#34;</span>)
+xlabel(<span style="color:var(--mw-color-matlabString)">&#34;Target Focal Length (mm)&#34;</span>)
+ylabel(<span style="color:var(--mw-color-matlabString)">&#34;Zoom Group Position (mm)&#34;</span>)
+legend(<span style="color:var(--mw-color-matlabString)">&#34;Gap between C2 and C3&#34;</span>,<span style="color:var(--mw-color-matlabString)">&#34;Gap between C4 and C5&#34;</span>)</pre></div></div></div><div class="informalfigure"><div id="d127e76831" class="mediaobject"><p><img src="../examples/optics/OptimizePhotographicZoomLensComponentPositionsExample_04.png" width="560"/></p></div></div><h4 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-9">Inspect Residual Error </h4><p>Compute the residual error, the difference between the target focal length and the optimized focal length, for each target focal length optimization.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>optimFocalLengths = zeros(size(targetFocalLengths));
+<span style="color:var(--mw-color-matlabKeyword)">for</span> ind = 1:numel(targetFocalLengths)
+    <span style="color:var(--mw-color-matlabComment)">% Compute the focal length as a result of optimization.</span>
+    opsys = configureForOptimization(opsys,zoomGrpDistances(ind,:));
+    opsysParInfo = paraxialInfo(opsys);
+    optimFocalLengths(ind) = opsysParInfo.FocalLength;
+<span style="color:var(--mw-color-matlabKeyword)">end</span>
+residualError = targetFocalLengths - optimFocalLengths;</pre></div></div></div><p>Plot the residual error.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>figure
+scatter(targetFocalLengths,residualError,<span style="color:var(--mw-color-matlabString)">&#34;filled&#34;</span>)
+xlabel(<span style="color:var(--mw-color-matlabString)">&#34;Required Focal Length (mm)&#34;</span>)
+ylabel(<span style="color:var(--mw-color-matlabString)">&#34;Residual Error in Optimized Focal Length&#34;</span>)</pre></div></div></div><div class="informalfigure"><div id="d127e76843" class="mediaobject"><p><img src="../examples/optics/OptimizePhotographicZoomLensComponentPositionsExample_05.png" width="560"/></p></div></div><h3 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-10">Analyze Optimized System</h3><p>Specify an initial zoom level at which to optimize the zoom group component position. Optimize the system using the <a class="intrnllnk" href="optimize-photographic-zoom-lens-component-positions.html#OptimizePhotographicZoomLensComponentPositionsExample-12"><code class="literal">configureForOptimization</code></a> helper function.</p><p>Create a tiled figure in which to plot the results. Display a 2-D visualization of the optimized optical system using the <code class="literal">view2d</code> object function, and visualize the traced marginal rays through the system. Visualize the spot diagram and the chromatic aberration using the <code class="literal">show</code> object function. Specify a zoom level at which to modify the zoom group component position and trace rays, and compute the RMS spot size and chromatic aberration.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre>zoomLevel = 15;
+distSol = zoomGrpDistances(zoomLevel,:);
+opsys = configureForOptimization(opsys,distSol);
+tl = tiledlayout(2,2);
+nexttile([1 2])
+hv = view2d(opsys,Parent=tl);
+hv.Title = <span style="color:var(--mw-color-matlabString)">&#34;Focal length:&#34;</span> + paraxialInfo(opsys).FocalLength;
+rays = traceMarginalRays(opsys,Wavelengths=opsys.PrimaryWavelength);
+addRays(hv,rays)
+
+nexttile
+show(spot(opsys),Parent=tl);
+
+nexttile
+show(chromaticAberration(opsys),Parent=tl);</pre></div></div></div><div class="informalfigure"><div id="d127e76862" class="mediaobject"><p><img src="../examples/optics/OptimizePhotographicZoomLensComponentPositionsExample_06.png" width="560"/></p></div></div><h3 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-11">Helper Functions</h3><h4 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-12"><code class="literal">configureForOptimization</code><span id="mw_rtc_OptimizePhotographicZoomLensComponentPositionsExample_M_3194" class="anchor_target"></span></h4><p>To evaluate a candidate solution, the <code class="literal">configureForOptimization</code> helper function updates the gaps between each of the two zoom groups based on the solution value.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre><span style="color:var(--mw-color-matlabKeyword)">function</span> opsys = configureForOptimization(opsys,sampleSolution)
+<span style="color:var(--mw-color-matlabComment)">% Change the gap between each of the two component groups.</span>
+changeGap(opsys,2,sampleSolution(1),GapLocation=<span style="color:var(--mw-color-matlabString)">&#34;after&#34;</span>);
+changeGap(opsys,4,sampleSolution(2),GapLocation=<span style="color:var(--mw-color-matlabString)">&#34;after&#34;</span>);
+<span style="color:var(--mw-color-matlabComment)">% Since all components after the second component are modified, </span>
+<span style="color:var(--mw-color-matlabComment)">% keep the image plane fixed at its initial position.</span>
+opsys.Components(end).Position(3) = opsys.UserData.FixedImagePlanePosition;
+<span style="color:var(--mw-color-matlabKeyword)">end</span></pre></div></div></div><h4 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-13"><code class="literal">opticalMeritFunc</code><span id="mw_rtc_OptimizePhotographicZoomLensComponentPositionsExample_M_8830" class="anchor_target"></span></h4><p>The <code class="literal">opticalMeritFunc</code> helper function takes as inputs the optimizer&#39;s current proposed distance solution, an <code class="literal">opticalSystem</code> object containing the optical system to optimize, and the target focal length. To quantify the accuracy of the solution, it returns a system error value that is the sum of the absolute deviation of the actual focal length and RMS spot values from the target values. </p><p>Due to the relative size differences in the target focal length and RMS spot size, the focal length error term dominates the system error. To scale the focal length and spot size error to the same order of magnitude, multiply each error term by the corresponding weights <code class="literal">fWeight</code> and <code class="literal">sWeight</code>. To use this helper function for your application, adjust the weight terms appropriately to ensure that each component error contribution to the system error is of the same order of magnitude.</p><div class="code_responsive" translate="no"><div class="programlisting"><div class="codeinput"><pre><span style="color:var(--mw-color-matlabKeyword)">function</span> errorTerm = opticalMeritFunc(x,opsys,targetFocalLength)
+<span style="color:var(--mw-color-matlabComment)">% Load a sample configuration tested by the optimizer.</span>
+opsys = configureForOptimization(opsys,x);
+<span style="color:var(--mw-color-matlabComment)">% Evaluate how much this configuration deviates from required values</span>
+<span style="color:var(--mw-color-matlabComment)">% by computing the system error, or the deviation from target.</span>
+<span style="color:var(--mw-color-matlabKeyword)">try</span>
+    <span style="color:var(--mw-color-matlabComment)">% Compute the focal length and spot size of a candidate system</span>
+    <span style="color:var(--mw-color-matlabComment)">% that the optimizer function is evaluating.</span>
+    zParaxial = paraxialInfo(opsys);
+    <span style="color:var(--mw-color-matlabComment)">% Compute the focal length. </span>
+    actualFocalLength = zParaxial.FocalLength;
+    <span style="color:var(--mw-color-matlabComment)">% Compute the spot size.</span>
+    spotRes = spot(opsys,Wavelength=opsys.PrimaryWavelength);
+    <span style="color:var(--mw-color-matlabComment)">% Specify a target small target RMS spot size, in millimeters.</span>
+    targetSpotSize = 0.01;
+    <span style="color:var(--mw-color-matlabComment)">% Introduce weight terms to scale both focal length and spot size</span>
+    <span style="color:var(--mw-color-matlabComment)">% to the same order of magnitude. </span>
+    fWeight = 1;
+    sWeight = 10;
+    <span style="color:var(--mw-color-matlabComment)">%Compute the error term.</span>
+    errorTerm = fWeight*abs(targetFocalLength - actualFocalLength) + <span style="color:var(--mw-color-matlabKeyword)">...</span>
+        sWeight*abs(spotRes.RMS - targetSpotSize);
+<span style="color:var(--mw-color-matlabKeyword)">catch</span>
+    <span style="color:var(--mw-color-matlabComment)">% If an error occurs when evaluating a solution, return inf to</span>
+    <span style="color:var(--mw-color-matlabComment)">% indicate a poor solution.</span>
+    errorTerm = inf;
+<span style="color:var(--mw-color-matlabKeyword)">end</span>
+<span style="color:var(--mw-color-matlabKeyword)">end</span></pre></div></div></div><h3 class="title" id="OptimizePhotographicZoomLensComponentPositionsExample-14">References</h3><span id="mw_rtc_OptimizePhotographicZoomLensComponentPositionsExample_M_7DC00FD4" class="anchor_target"></span><p>[1] Bass, Michael and Optical Society of America, eds. &#34;Chapter 16: Camera Lenses&#34;. <span class="emphasis"><em>Handbook of Optics</em></span>. 2nd ed. Vol. II. New York: McGraw-Hill, 1995. pp 16.20-16.21.</p><p><span class="emphasis"><em>Copyright 2025, The MathWorks, Inc.</em></span></p></div></section>
+    </div></section><div class="clearfix"></div>
+<div align="center" class="feedbackblock" id="mw_docsurvey"><script src="/help/includes/shared/docsurvey/docfeedback.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script nonce="Nj7hysrXgeCO79hxhVpl8GYD">loadSurveyHidden();</script>
+<link rel="stylesheet" href="/help/includes/shared/docsurvey/release/index-css.css" type="text/css"/>
+<script src="/help/includes/shared/docsurvey/release/bundle.index.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script nonce="Nj7hysrXgeCO79hxhVpl8GYD">initDocSurvey();</script></div>
+
+
+
+
+<div class="modal fade" id="matlab-command-dialog" tabindex="-1" role="dialog" aria-labelledby="matlabCommandDialogLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">MATLAB Command</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="dialog-body">
+        <p>You clicked a link that corresponds to this MATLAB command: </p>
+        <pre id="dialog-matlab-command"></pre>
+        <p>Run the command by entering it in the MATLAB Command Window.
+        Web browsers do not support MATLAB commands.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn_color_blue" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+	<div><div class="targetContent parsys containsResourceName resourceClass-parsys"><div class="cqColumns containsResourceName section resourceClass-columns"><div class="row  ">
+
+	
+		<div class=" col-12 "><div class="2420e633-83fe-4c2d-9b62-4248985f27d2 parsys containsResourceName resourceClass-parsys">
+</div>
+</div>
+	
+</div>
+</div>
+
+</div>
+</div>
+</div></div>
+
+</div>
+</section>
+	
+	
+	
+		
+
+<div><div class="modalParsys parsys containsResourceName resourceClass-parsys">
+</div>
+</div>
+
+		
+
+
+	<div id="location_content" style="display:none;"></div>
+
+	<div class="modal fade" id="country-unselected" tabindex="-1" aria-labelledby="domain_selector_label" style="padding-left: 0px; display:none;" aria-modal="true" role="dialog">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<img src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/images/mathworks-logo.20260806155224309.svg" class="mw_logo theme_light" alt="MathWorks" width="173" height="35"/>
+					<img src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/resources/images/mathworks-logo-rev.20260806155224309.svg" class="mw_logo theme_dark" alt="MathWorks" width="173" height="35" style="display:none;"/>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+					<p class="h1 icon-globe" id="domain_selector_label">Select a Web Site</p>
+					<p>Choose a web site to get translated content where available and see local events and offers. Based on your location, we recommend that you select: <strong class="recommended-country"></strong>.</p>
+					<div class="default-recommendation">
+						<p><a class="btn btn_color_blue" data-lang="en" href="#" id="recommended_domain_button"><span class="recommended-country"></span></a></p>
+					</div>
+
+					<div class="ch-recommendation" style="display:none;">
+						<ul class="list-inline">
+							<li class="list-inline-item add_margin_5 d-block d-md-inline-block"><a class="recommendation-button btn btn-outline btn_color_blue" data-default-lang="true" data-do-not-rewrite="true" data-lang="en" data-recommended-text="Switzerland" data-subdomain="ch" href="//ch.mathworks.com"><strong class="recommended-country"></strong> (English)</a></li>
+							<li class="list-inline-item add_margin_5 d-block d-md-inline-block"><a class="recommendation-button btn btn-outline btn_color_blue" data-do-not-rewrite="true" data-lang="de" data-recommended-text="Schweiz" data-subdomain="ch" href="//ch.mathworks.com"><strong class="recommended-country"></strong> (Deutsch)</a></li>
+							<li class="list-inline-item add_margin_5 d-block d-md-inline-block"><a class="recommendation-button btn btn-outline btn_color_blue" data-do-not-rewrite="true" data-lang="fr" data-recommended-text="Suisse" data-subdomain="ch" href="//ch.mathworks.com"><strong class="recommended-country"></strong> (Français)</a></li>
+						</ul>
+					</div>
+					<div class="zh-recommendation" style="display:none;">
+						<ul class="list-inline">
+							<li class="list-inline-item"><a class="recommendation-button btn btn-outline btn_color_blue" data-default-lang="true" data-do-not-rewrite="true" data-lang="zh" data-recommended-text="中国" data-subdomain="ww2" href="//ww2.mathworks.cn"><strong class="recommended-country"></strong>（简体中文）</a></li>
+							<li class="list-inline-item"><a class="recommendation-button btn btn-outline btn_color_blue" data-do-not-rewrite="true" data-lang="en" data-recommended-text="China" data-subdomain="ww2" href="//ww2.mathworks.cn"><strong class="recommended-country"></strong> (English)</a></li>
+						</ul>
+					</div>
+
+					<p>You can also select a web site from the following list</p>
+					<div class="alert alert-warning" role="alert" id="china_performance_alert" style="display:none;"> <span class="alert_icon icon-alert-warning"></span>
+						<p class="alert_heading"><strong>How to Get Best Site Performance</strong></p>
+						<p>Select the China site (in Chinese or English) for best site performance. Other MathWorks country sites are not optimized for visits from your location.</p>
+					</div>
+					<div class="row add_margin_30">
+						<div class="col-12 col-sm-4 col-lg-3">
+							<p class="h3 add_bottom_rule">Americas</p>
+							<ul class="list-unstyled">
+								<li><a class="domain_selector_link" data-country-code="LA" data-default-lang="true" data-do-not-rewrite="true" data-lang="es" data-recommended-text="América Latina" data-selected-text="América Latina" data-subdomain="la" href="//la.mathworks.com">América Latina</a> (Español)</li>
+								<li><a class="domain_selector_link" data-country-code="CA" data-do-not-rewrite="true" data-lang="en" data-subdomain="www" href="//www.mathworks.com">Canada</a> (English)</li>
+								<li><a class="domain_selector_link" data-country-code="US" data-default-lang="true" data-do-not-rewrite="true" data-lang="en" data-recommended-text="United States" data-selected-text="United States" data-subdomain="www" href="//www.mathworks.com">United States</a> (English)</li>
+							</ul>
+						</div>
+						<div class="col-12 col-sm-4 col-lg-6">
+							<p class="h3 add_bottom_rule">Europe</p>
+							<div class="row">
+								<div class="col-6 col-sm-12 col-lg-6">
+									<ul class="list-unstyled">
+										<li><a class="domain_selector_link" data-country-code="BE" data-do-not-rewrite="true" data-lang="en" data-subdomain="nl" href="//nl.mathworks.com">Belgium</a> (English)</li>
+										<li><a class="domain_selector_link" data-country-code="DK" data-do-not-rewrite="true" data-lang="en" data-subdomain="se" href="//se.mathworks.com">Denmark</a> (English)</li>
+										<li><a class="domain_selector_link" data-country-code="DE" data-default-lang="true" data-do-not-rewrite="true" data-lang="de" data-recommended-text="Deutschland" data-selected-text="Deutschland" data-subdomain="de" href="//de.mathworks.com">Deutschland</a> (Deutsch)</li>
+										<li><a class="domain_selector_link" data-country-code="ES" data-default-lang="true" data-do-not-rewrite="true" data-lang="es" data-recommended-text="España" data-selected-text="España" data-subdomain="es" href="//es.mathworks.com">España</a> (Español)</li>
+										<li><a class="domain_selector_link" data-country-code="FI" data-do-not-rewrite="true" data-lang="en" data-subdomain="se" href="//se.mathworks.com">Finland</a> (English)</li>
+										<li><a class="domain_selector_link" data-country-code="FR" data-default-lang="true" data-do-not-rewrite="true" data-lang="fr" data-recommended-text="France" data-selected-text="France" data-subdomain="fr" href="//fr.mathworks.com">France</a> (Français)</li>
+										<li><a class="domain_selector_link" data-country-code="IE" data-do-not-rewrite="true" data-lang="en" data-subdomain="uk" href="//uk.mathworks.com">Ireland</a> (English)</li>
+										<li><a class="domain_selector_link" data-country-code="IT" data-default-lang="true" data-do-not-rewrite="true" data-lang="it" data-recommended-text="Italia" data-selected-text="Italia" data-subdomain="it" href="//it.mathworks.com">Italia</a> (Italiano)</li>
+										<li><a class="domain_selector_link" data-country-code="LU" data-do-not-rewrite="true" data-lang="en" data-subdomain="nl" href="//nl.mathworks.com">Luxembourg</a> (English)</li>
+									</ul>
+								</div>
+								<div class="col-6 col-sm-12 col-lg-6">
+									<ul class="list-unstyled">
+										<li><a class="domain_selector_link" data-country-code="NL" data-default-lang="true" data-do-not-rewrite="true" data-lang="en" data-recommended-text="Netherlands" data-selected-text="Benelux" data-subdomain="nl" href="//nl.mathworks.com">Netherlands</a> (English)</li>
+										<li><a class="domain_selector_link" data-country-code="NO" data-do-not-rewrite="true" data-lang="en" data-subdomain="se" href="//se.mathworks.com">Norway</a> (English)</li>
+										<li><a class="domain_selector_link" data-country-code="AT" data-do-not-rewrite="true" data-lang="de" data-subdomain="de" href="//de.mathworks.com">Österreich</a> (Deutsch)</li>
+										<li><a class="domain_selector_link" data-country-code="PT" data-do-not-rewrite="true" data-lang="en" data-subdomain="www" href="//www.mathworks.com">Portugal</a> (English)</li>
+										<li><a class="domain_selector_link" data-country-code="SE" data-default-lang="true" data-do-not-rewrite="true" data-lang="en" data-recommended-text="Sweden" data-selected-text="Nordic" data-subdomain="se" href="//se.mathworks.com">Sweden</a> (English)</li>
+										<li>Switzerland
+											<ul class="list-unstyled add_indent_20">
+												<li><a class="domain_selector_link" data-country-code="CH" data-do-not-rewrite="true" data-lang="de" data-recommended-text="Schweiz" data-selected-text="Schweiz" data-subdomain="ch" href="//ch.mathworks.com">Deutsch</a></li>
+												<li><a class="domain_selector_link" data-country-code="CH" data-default-lang="true" data-do-not-rewrite="true" data-lang="en" data-recommended-text="Switzerland" data-selected-text="Switzerland" data-subdomain="ch" href="//ch.mathworks.com" id="swiss_english">English</a></li>
+												<li><a class="domain_selector_link" data-country-code="CH" data-do-not-rewrite="true" data-lang="fr" data-recommended-text="Suisse" data-selected-text="Suisse" data-subdomain="ch" href="//ch.mathworks.com">Français</a></li>
+											</ul>
+										</li>
+										<li><a class="domain_selector_link" data-country-code="GB" data-default-lang="true" data-do-not-rewrite="true" data-lang="en" data-recommended-text="United Kingdom" data-selected-text="United Kingdom" data-subdomain="uk" href="//uk.mathworks.com">United Kingdom</a> (English)</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-4 col-lg-3">
+							<p class="h3 add_bottom_rule">Asia Pacific</p>
+							<ul class="list-unstyled">
+								<li><a class="domain_selector_link" data-country-code="AU" data-default-lang="true" data-do-not-rewrite="true" data-lang="en" data-recommended-text="Australia" data-selected-text="Australia" data-subdomain="au" href="//au.mathworks.com">Australia</a> (English)</li>
+								<li><a class="domain_selector_link" data-country-code="IN" data-default-lang="true" data-do-not-rewrite="true" data-lang="en" data-recommended-text="India" data-selected-text="India" data-subdomain="in" href="//in.mathworks.com">India</a> (English)</li>
+								<li><a class="domain_selector_link" data-country-code="NZ" data-do-not-rewrite="true" data-lang="en" data-subdomain="au" href="//au.mathworks.com">New Zealand</a> (English)</li>
+								<li>中国
+									<ul class="list-unstyled add_indent_20">
+										<li><a class="domain_selector_link" data-country-code="CN" data-default-lang="true" data-do-not-rewrite="true" data-lang="zh" data-recommended-text="中国" data-selected-text="中国" data-subdomain="ww2" href="//ww2.mathworks.cn">简体中文</a></li>
+										<li><a class="domain_selector_link" data-country-code="CN" data-default-lang="true" data-do-not-rewrite="true" data-lang="en" data-recommended-text="China" data-selected-text="China" data-subdomain="ww2" href="//ww2.mathworks.cn">English</a></li>
+									</ul>
+								</li>
+								<li><a class="domain_selector_link" data-country-code="JP" data-default-lang="true" data-do-not-rewrite="true" data-lang="ja" data-recommended-text="日本" data-selected-text="日本" data-subdomain="jp" href="//jp.mathworks.com">日本</a> (日本語)</li>
+								<li><a class="domain_selector_link" data-country-code="KR" data-default-lang="true" data-do-not-rewrite="true" data-lang="ko" data-recommended-text="한국" data-selected-text="한국" data-subdomain="kr" href="//kr.mathworks.com">한국</a> (한국어)</li>
+							</ul>
+						</div>
+					</div>
+					<p class="text-center"><a class="worldwide_link" data-do-not-rewrite="true" href="#">Contact your local office</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+    
+
+
+
+
+
+
+
+
+    
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/domainselector.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+	
+</main>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+<footer id="footer">
+	
+		<div class="primary_footer" id="primary_footer">
+			<div class="container-fluid container-lg">
+				<div class="row align-items-start">
+					<div class="col-12 col-md-9">
+						<nav>
+							
+							<div class="footerNavigation footernavigation containsResourceName resourceClass-footernavigation">
+
+
+
+	<ul class="list-inline " id="footernav" data-privacy="Your Privacy Choices">
+		<li class="list-inline-item" id="footernav_footernav_patents">
+			
+	
+	
+	
+
+	
+
+	<a class=" " href="/company/trust-center.html?s_tid=gf_tc">
+
+		
+
+		
+			
+			Trust Center</a>
+
+		
+		
+	
+
+		</li>
+	
+		<li class="list-inline-item" id="footernav_footernav_trademarks">
+			
+	
+	
+	
+
+	
+
+	<a class=" " href="/company/trust-center/trademarks.html?s_tid=gf_trd">
+
+		
+
+		
+			
+			Trademarks</a>
+
+		
+		
+	
+
+		</li>
+	
+		<li class="list-inline-item" id="footernav_footernav_privacy">
+			
+	
+	
+	
+
+	
+
+	<a class=" " href="/company/trust-center/privacy-policy.html?s_tid=gf_priv">
+
+		
+
+		
+			
+			Privacy Policy</a>
+
+		
+		
+	
+
+		</li>
+	
+		<li class="list-inline-item" id="footernav_footernav_piracy">
+			
+	
+	
+	
+
+	
+
+	<a class=" " href="/company/trust-center/piracy.html?s_tid=gf_pir">
+
+		
+
+		
+			
+			Preventing Piracy</a>
+
+		
+		
+	
+
+		</li>
+	
+		<li class="list-inline-item" id="footernav_footernav_status">
+			
+	
+	
+	
+
+	
+
+	<a class=" " href="https://status.mathworks.com/?s_tid=gf_application">
+
+		
+
+		
+			
+			Application Status</a>
+
+		
+		
+	
+
+		</li>
+	
+		<li class="list-inline-item" id="footernav_footernav_contactus">
+			
+	
+	
+	
+
+	
+
+	<a class=" " href="/company/aboutus/contact_us.html?s_tid=gf_contact">
+
+		
+
+		
+			
+			Contact Us</a>
+
+		
+		
+	
+
+		</li>
+	</ul>
+
+
+
+
+    
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/footernavigation.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+</div>
+
+						</nav>
+						<p class="copyright">© 1994-2026 The MathWorks, Inc.</p>
+					</div>
+					<div class="col-12 col-md-3">
+						<div id="countrynav" class="d-flex justify-content-end">
+							<button class="btn btn-outline btn_countrynav companion_btn add_margin_20" id="domainButton" data-toggle="modal" data-bs-toggle="modal" data-target="#country-unselected" data-bs-target="#country-unselected">
+								<span class="visually-hidden sr-only">Select a Web Site</span>
+								<span class="icon-globe"></span>
+								<span id="countrySelectorButtonText">United States</span>
+							</button>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	
+	
+</footer>
+
+
+		</div>
+	</div>
+</div>
+
+		
+		
+		
+
+		
+			
+    
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/button.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/downsize.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/upsize.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/tags.min.20260806155224309.css" type="text/css"/>
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/bs5-footer.min.20260806155224309.css" type="text/css"/>
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/substitutepricing.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/tags.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+
+			
+    
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/domainredirect.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+
+			
+    
+
+
+
+
+			
+    
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/bootstrap5.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+			
+    
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/signinanalytics.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/spotlight.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/templates/common/bs5.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+			
+			
+				
+    
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/corporatenav.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+				<div class="modal-backdrop fade show" id="corporate_nav_modal"></div>
+			
+			
+
+			
+			<a aria-hidden="true" aria-label="Back to top" class="btn btn_color_mediumgray" href="#" id="go-top" tabindex="0"><span class="icon-arrow-open-up icon_24"></span></a>
+			<div id="web-application-footer-assets"></div>
+
+			
+    
+<link rel="stylesheet" href="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/matrixmenu.min.20260806155224309.css" type="text/css"/>
+<script src="https://www.mathworks.com/etc.clientlibs/mathworks/clientlibs/customer-ui/components/matrixmenu.min.20260806155224309.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+
+
+
+
+			
+
+		
+
+	
+
+
+
+
+<script src="/help/releases/R2026b/includes/shared/scripts/saxonjs/SaxonJS2.rt.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script src="/help/releases/R2026b/includes/shared/scripts/product_group.js" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script>
+<script nonce="Nj7hysrXgeCO79hxhVpl8GYD">
+        window.history.replaceState(window.location.href, null, ""); // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+        mystylesheetLocation = "/help/releases/R2026b/includes/shared/scripts/product_group-sef.json";
+        mysourceLocation = "/help/releases/R2026b/docset.xml";
+        product_help_location = "images";
+        pagetype = "module";
+        doccentertype = "web";
+        langcode = "";
+        getProductFilteredList(mystylesheetLocation, mysourceLocation, product_help_location, pagetype, doccentertype, langcode);
+        });
+      </script>
+<script src="/help/includes/web/scripts/livecontrolpopoverhandler.js?202409" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script><script src="/help/includes/web/scripts/livetaskpopoverhandler.js?202409" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script><script src="https://matlab.mathworks.com/open/openwith.js?202403" nonce="Nj7hysrXgeCO79hxhVpl8GYD"></script><style>.examples_short_list a.btn {display: none;}</style></body></html>

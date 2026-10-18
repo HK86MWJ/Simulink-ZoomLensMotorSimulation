@@ -1,0 +1,7 @@
+Name,Passed,Failed,Incomplete,Duration
+testZoomModel/testOfficialPrescription,1,0,0,1.5757713
+testZoomModel/testAllOptimizedAndIntermediateStates,1,0,0,6.9412606
+testZoomModel/testInvalidAndIntersectingStates,1,0,0,0.2656203
+testZoomModel/testCopyIsolationAndReproducibility,1,0,0,0.2686671
+testZoomModel/testInterpolationRejectsOutOfRange,1,0,0,0.016409
+testZoomModel/testControlArtifacts,1,0,0,2.0341168

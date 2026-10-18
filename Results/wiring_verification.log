@@ -1,0 +1,26 @@
+ZoomActuatorControl wiring readability verification
+
+Changes:
+- Explicit orthogonal routes and branch junctions for all three diagrams.
+- Command/actual/velocity logging branches separated from the signal paths.
+- Position feedback routed along the lower edge of each servo subsystem.
+- Local Goto/From tag safe_close_v replaces the long shared speed-limit return.
+- No arithmetic, delay, solver or controller parameter changes.
+
+After loading the saved model, all signal segments were checked against
+block interiors (excluding a one-pixel boundary margin):
+ZoomActuatorControl: 0 block intersections, 0 diagonal segments
+ZoomActuatorControl/Group1Servo: 0 block intersections, 0 diagonal segments
+ZoomActuatorControl/Group2Servo: 0 block intersections, 0 diagonal segments
+
+The model was regenerated from buildZoomControlModel, saved and reloaded.
+The following 7 signals had exactly identical Time and Data arrays compared
+with the model captured before this wiring change (1201 samples each):
+gap1_actual, gap2_actual, group1_actual, group2_actual,
+group1_velocity, group2_velocity, focal_target.
+
+Repeated formatter application succeeded without adding duplicate tag blocks.
+Before-change backup: Model/Backup/ZoomActuatorControl_before_wiring.slx
+Updated figures: Results/control_model.png, Results/group1_servo.png,
+Results/group2_servo.png.
+Numerical geometry audit: Results/wiring_audit.mat

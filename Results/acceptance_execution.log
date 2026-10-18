@@ -1,0 +1,20 @@
+    Target_mm    Gap1_mm    Gap2_mm     Actual_mm    Error_mm     SpotRMS_mm    FNumber    FocusOffset_mm
+    _________    _______    ________    _________    _________    __________    _______    ______________
+
+        70       2.0237       41.514     70.004      0.0036646    0.0041548     2.8909         0.13349   
+       140       13.884       15.568        140      0.0027845    0.0018153     3.5572        0.067778   
+       210       17.869     0.050014     209.99      -0.011069      0.21171     4.2592          2.4402   
+
+Warning: The model name 'ZoomActuatorControl' is shadowing another name in the MATLAB workspace or path. Type "which -all ZoomActuatorControl" at the
+command line to find the other uses of this name. You should change the name of the model to avoid problems. 
+> In buildZoomControlModel (line 8)
+In runZoomControlDemo (line 4)
+In runZoomAcceptance (line 12) 
+step: 121 optical samples, peak focal error 139.8714 mm, final error -0.0111 mm.
+sweep: 121 optical samples, peak focal error 3.2213 mm, final error 0.1452 mm.
+Running testZoomModel
+......
+Done testZoomModel
+__________
+
+Acceptance complete. 6 tests passed. UI playback 12.36 seconds.

@@ -1,0 +1,104 @@
+26.2.0.3386108 (R2026b)
+       Name: 'Image Processing Toolbox'
+    Version: '26.2'
+    Release: '(R2026b)'
+       Date: '22-May-2026'
+
+       Name: 'Optimization Toolbox'
+    Version: '26.2'
+    Release: '(R2026b)'
+       Date: '22-May-2026'
+
+       Name: 'Simulink'
+    Version: '26.2'
+    Release: '(R2026b)'
+       Date: '22-May-2026'
+
+C:\ProgramData\MATLAB\SupportPackages\R2026b\toolbox\images\supportpackages\optics\optics\@opticalSystem\opticalSystem.p
+C:\Project\DevAI\optics\zoomlens\assets\official\createPhotoZoom.m
+ <strong>opticalSystem/changeGap</strong> - Change gap between components in optical system
+
+    <strong>Syntax</strong>
+      changeGap(opsys,cInd,newGap,GapLocation=gapPos)
+
+    <strong>Input Arguments</strong>
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/opticalsystem.changegap.html#mw_e48265d2-52bb-4127-9edb-c45b9db7f51d')">opsys</a> - Optical system
+        opticalSystem object
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/opticalsystem.changegap.html#mw_d7168216-844f-49ba-9d0a-a8af951cd0d3')">cInd</a> - Component index
+        positive scalar
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/opticalsystem.changegap.html#mw_e2e993a3-5f9f-4aad-9c0c-f5508990cf2a')">newGap</a> - Gap size
+        positive scalar
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/opticalsystem.changegap.html#mw_0e3a7465-7d6b-47a6-8a6b-725995c1d1a6')">gapPos</a> - Gap location
+        "after" (default) | "before"
+
+    <strong>Examples</strong>
+      <a href="matlab:openExample('optics/ModifyGapBetweenOpticalComponentsExample')">Modify Gap Between Optical Components</a>
+
+    <strong>See also</strong> <a href="matlab:help opticalSystem -displayBanner">opticalSystem</a>, <a href="matlab:help addImagePlane -displayBanner">addImagePlane</a>, <a href="matlab:help addRefractiveSurface -displayBanner">addRefractiveSurface</a>,
+      <a href="matlab:help addDiaphragm -displayBanner">addDiaphragm</a>, <a href="matlab:help addGap -displayBanner">addGap</a>, <a href="matlab:help distanceBefore -displayBanner">distanceBefore</a>, <a href="matlab:help distanceAfter -displayBanner">distanceAfter</a>
+
+    Introduced in Optical Design and Simulation Library for Image Processing Toolbox in R2026a
+    <a href="matlab:doc opticalSystem/changeGap">Documentation for opticalSystem/changeGap</a>
+
+ <strong>opticalSystem/spot</strong> - Compute spot at which rays converge in image plane
+
+    <strong>Syntax</strong>
+      rms = spot(opsys)
+      rms = spot(opsys,Name=Value)
+
+    <strong>Input Arguments</strong>
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/opticalsystem.spot.html#mw_cd8c405a-85ed-46b9-9eaa-b72834a8e544')">opsys</a> - Optical system
+        opticalSystem object
+
+    <strong>Name-Value Arguments</strong>
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/opticalsystem.spot.html#mw_8ceaf26a-c847-47d2-8eab-c4e4343de99e')">FieldPoint</a> - Field point representation of light source
+        opsys.FieldPoints(1) (default) | FieldAngle object |
+        FieldPosition object
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/opticalsystem.spot.html#mw_be3912ac-6bcf-4168-99e8-ea8fa959f55a')">Wavelengths</a> - Wavelengths
+        M-element numeric vector
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/opticalsystem.spot.html#mw_d16901f5-5f92-4109-a940-8d81f219d82c')">SamplingGrid</a> - Sampling grid
+        samplingGrid("Hexapolar") (default) | samplingGrid object
+
+    <strong>Output Arguments</strong>
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/opticalsystem.spot.html#mw_9aacf09a-ed08-4eb2-a9f6-3f57d0cb6655')">rms</a> - RMS spot size
+        Spot object
+
+    <strong>Examples</strong>
+      <a href="matlab:openExample('optics/ComputeSpotDiagramForOpticalSystemExample')">Compute Spot Diagram for Optical System</a>
+
+    <strong>See also</strong> <a href="matlab:help samplingGrid -displayBanner">samplingGrid</a>, <a href="matlab:help psf -displayBanner">psf</a>, <a href="matlab:help airyDiskRadius -displayBanner">airyDiskRadius</a>, <a href="matlab:help traceRays -displayBanner">traceRays</a>, <a href="matlab:help traceChiefRay -displayBanner">traceChiefRay</a>,
+      <a href="matlab:help traceMarginalRays -displayBanner">traceMarginalRays</a>, <a href="matlab:help opticalSystem -displayBanner">opticalSystem</a>, <a href="matlab:help opticalSystem.focus -displayBanner">focus</a>, <a href="matlab:help fieldPoint -displayBanner">fieldPoint</a>
+
+    Introduced in Optical Design and Simulation Library for Image Processing Toolbox in R2026a
+    <a href="matlab:doc opticalSystem/spot">Documentation for opticalSystem/spot</a>
+
+ <strong>optics.ui.OpticalSystemViewer2D/addRays</strong> - Add traced rays to visualization of optical system
+
+    <strong>Syntax</strong>
+      addRays(osv)
+      addRays(osv,rays)
+      addRays(osv,rays,Name=Value)
+
+    <strong>Input Arguments</strong>
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/optics.ui.opticalsystemviewer2d.addrays.html#mw_9459edbd-fbf4-44c2-a40c-ea70f8dea33d')">osv</a> - Optical system visualization to customize
+        OpticalSystemViewer2D object | OpticalSystemViewer3D object
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/optics.ui.opticalsystemviewer2d.addrays.html#mw_c971cd2b-3b87-4bc4-b521-246b61c996e7')">rays</a> - Rays to add to visualization
+        RayBundle object | vector of RayBundle objects
+
+    <strong>Name-Value Arguments</strong>
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/optics.ui.opticalsystemviewer2d.addrays.html#mw_03458b76-b7ec-4b38-bee8-6f2ff6cb367a')">Color</a> - Ray color
+        RGB triplet | vector of RGB triplets | hexadecimal color code |
+        vector of hexadecimal color codes | "r" | "g" | "b" | ...
+      <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/optics.ui.opticalsystemviewer2d.addrays.html#mw_75eeee28-8d4b-4220-be59-dcb3a29a2cfd')">Alpha</a> - Transparency of rays in 3-D visualization
+        numeric scalar in range [0, 1]
+
+    <strong>Examples</strong>
+      <a href="matlab:openExample('optics/VisualizeOpticalSystemIn2DExample')">Visualize Optical System in 2-D</a>
+      <a href="matlab:openExample('optics/VisualizeOpticalSystemIn3DExample')">Visualize Optical System in 3-D</a>
+
+    <strong>See also</strong> <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/optics.ui.opticalsystemviewer2d.html')">OpticalSystemViewer2D</a>, <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/optics.ui.opticalsystemviewer3d.html')">OpticalSystemViewer3D</a>, <a href="matlab:help removeRays -displayBanner">removeRays</a>,
+      <a href="matlab:help explode -displayBanner">explode</a>, <a href="matlab:web('C:\Program Files\MATLAB\R2026b\help/images/ref/optics.ui.opticalsystemviewer3d.unexplode.html')">restore</a>, <a href="matlab:help showComponents -displayBanner">showComponents</a>
+
+    Introduced in Optical Design and Simulation Library for Image Processing Toolbox in R2026a
+    <a href="matlab:doc optics.ui.OpticalSystemViewer2D/addRays">Documentation for optics.ui.OpticalSystemViewer2D/addRays</a>
+

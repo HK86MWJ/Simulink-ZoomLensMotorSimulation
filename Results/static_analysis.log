@@ -1,0 +1,9 @@
+
+loadZoomSystem.m
+VERLESSMATLAB line 4: verLessThan('matlab', ...) is not recommended. With appropriate code changes, use 'isMATLABReleaseOlderThan' instead.
+
+precomputeZoomTrajectory.m
+NASGU line 47: Value assigned to variable might be unused.
+
+runZoomAcceptance.m
+ISCL line 30: To improve performance, use 'isscalar' instead of length comparison.

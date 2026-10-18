@@ -1,0 +1,19 @@
+ZoomActuatorControl layout verification
+
+Formatted the top level, Group1Servo and Group2Servo.
+Applied consistent spacing, fonts, functional colors and section annotations.
+Routed the position feedback below the forward signal path.
+Verified repeated formatting without duplicate layout annotations.
+
+Before/after simulation comparison: exact equality of Time and Data.
+gap1_actual: identical (1201 samples)
+gap2_actual: identical (1201 samples)
+group1_actual: identical (1201 samples)
+group2_actual: identical (1201 samples)
+group1_velocity: identical (1201 samples)
+group2_velocity: identical (1201 samples)
+focal_target: identical (1201 samples)
+
+Model update/compilation succeeded.
+MATLAB Code Analyzer reported no issues in formatZoomControlModel.m.
+Original model saved in results/ZoomActuatorControl_before_layout.slx.
